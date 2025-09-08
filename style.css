@@ -1,0 +1,95 @@
+/* Универсальный селектор */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6;
+}
+
+/* Шапка */
+header {
+  text-align: center; /* центрируем содержимое */
+  padding: 20px;
+}
+
+header h1 {
+  margin-bottom: 15px; /* отступ между заголовком и меню */
+}
+
+/* Навигация */
+nav {
+  background-color: #87CEFA; /* голубой фон */
+  padding: 10px 0;
+}
+
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+}
+
+nav a:hover {
+  color: #ff6600;
+}
+
+
+/* Основной контент */
+main {
+  padding: 20px;
+}
+
+h1, h2 {
+  margin-bottom: 15px;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* Таблица */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #E0F7FA; /* светло-голубой фон */
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #87CEFA; /* заголовок таблицы чуть темнее */
+}
+
+
+/* Футер */
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: #ff6600;
+}
