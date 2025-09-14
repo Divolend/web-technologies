@@ -1,4 +1,3 @@
-/* Универсальный селектор */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -14,31 +13,37 @@ body {
 
 /* Шапка */
 header {
-  text-align: center; /* центрируем содержимое */
+  text-align: center;
   padding: 20px;
 }
 
 header h1 {
-  margin-bottom: 15px; /* отступ между заголовком и меню */
+  margin-bottom: 15px;
 }
 
 /* Навигация */
 nav {
-  background-color: #87CEFA; /* голубой фон */
-  padding: 10px 0;
+  display: flex;
+  justify-content: space-between; /* по основной оси равномерно */
+  background-color: #87CEFA;
+  padding: 10px 20px;
 }
 
 nav a {
-  margin: 0 15px;
   text-decoration: none;
   color: #333;
   font-size: 18px;
+  padding: 5px 10px;
 }
 
 nav a:hover {
   color: #ff6600;
 }
 
+nav a.active {
+  color: #ff6600; /* активный пункт меню */
+  font-weight: bold;
+}
 
 /* Основной контент */
 main {
@@ -59,11 +64,27 @@ img {
   margin-bottom: 15px;
 }
 
+/* Классы для блюд */
+.all-dishes > .dishes-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dish {
+  flex: 1 1 30%;
+  text-align: center;
+}
+
+.dish img {
+  border-radius: 5px;
+}
+
 /* Таблица */
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #E0F7FA; /* светло-голубой фон */
+  background-color: #E0F7FA;
 }
 
 th, td {
@@ -73,9 +94,8 @@ th, td {
 }
 
 th {
-  background-color: #87CEFA; /* заголовок таблицы чуть темнее */
+  background-color: #87CEFA;
 }
-
 
 /* Футер */
 footer {
@@ -92,4 +112,40 @@ footer a {
 
 footer a:hover {
   color: #ff6600;
+}
+
+/* Адаптивность */
+
+/* ≤800px */
+@media (max-width: 800px) {
+  .all-dishes img {
+    width: 500px; 
+    max-width: 100%;
+  }
+}
+
+/* ≤600px */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;          /* вертикальное меню */
+    align-items: center;             /* по центру поперечной оси */
+  }
+  nav a {
+    font-size: 22px;                 /* +4px к размеру */
+    margin: 10px 0;
+  }
+}
+
+/* ≤400px */
+@media (max-width: 400px) {
+  table {
+    font-size: 14px;  /* уменьшение шрифта на 2px */
+  }
+  th, td {
+    padding: 8px;
+  }
+  /* ещё минус 2px для самой маленькой ширины */
+  table {
+    font-size: 12px;
+  }
 }
