@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Собрать ланч</title>
 
-  <!-- Подключение основного стиляглавной страницы -->
-  <link rel="stylesheet" href="style.css">
-  <!-- Дополнительные стили для этой страницы -->
-  <link rel="stylesheet" href="lunch.css">
-
-  <!-- Подключение шрифта (как на главной) -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="lunch.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
-
 <header>
   <h1>Food Construct</h1>
   <nav>
@@ -27,105 +22,127 @@
 
 <main>
   <!-- Супы -->
-  <section>
+  <section id="soups">
     <h2>Выберите суп</h2>
-    <div class="dish-grid">
-
-      <div class="dish-card">
-        <img src="Images/pumpkin.jpg" alt="Тыквенный суп">
-        <p class="price">210₽</p>
-        <p class="name">Тыквенный крем-суп</p>
-        <p class="weight">350 г</p>
-        <button>Добавить</button>
-      </div>
-
-      <div class="dish-card">
-        <img src="Images/chicken.jpg" alt="Куриный суп">
-        <p class="price">190₽</p>
-        <p class="name">Куриный суп с лапшой</p>
-        <p class="weight">330 г</p>
-        <button>Добавить</button>
-      </div>
-
-      <div class="dish-card">
-        <img src="Images/sea.jpg" alt="Суп с морепродуктами">
-        <p class="price">260₽</p>
-        <p class="name">Суп с морепродуктами</p>
-        <p class="weight">320 г</p>
-        <button>Добавить</button>
-      </div>
-
-    </div>
+    <div class="dish-grid"></div>
   </section>
 
   <!-- Основные блюда -->
-  <section>
+  <section id="mains">
     <h2>Выберите главное блюдо</h2>
-    <div class="dish-grid">
-
-      <div class="dish-card">
-        <img src="Images/steak.jpg" alt="Стейк">
-        <p class="price">450₽</p>
-        <p class="name">Говяжий стейк с овощами</p>
-        <p class="weight">300 г</p>
-        <button>Добавить</button>
-      </div>
-
-      <div class="dish-card">
-        <img src="Images/paste.jpg" alt="Паста Карбонара">
-        <p class="price">320₽</p>
-        <p class="name">Паста Карбонара</p>
-        <p class="weight">280 г</p>
-        <button>Добавить</button>
-      </div>
-
-      <div class="dish-card">
-        <img src="Images/rice.jpg" alt="Рис с курицей">
-        <p class="price">290₽</p>
-        <p class="name">Рис с курицей терияки</p>
-        <p class="weight">300 г</p>
-        <button>Добавить</button>
-      </div>
-
-    </div>
+    <div class="dish-grid"></div>
   </section>
 
   <!-- Напитки -->
-  <section>
+  <section id="drinks">
     <h2>Выберите напиток</h2>
-    <div class="dish-grid">
-
-      <div class="dish-card">
-        <img src="Images/lemon.jpg" alt="Лимонад">
-        <p class="price">120₽</p>
-        <p class="name">Лимонад с мятой</p>
-        <p class="weight">300 мл</p>
-        <button>Добавить</button>
-      </div>
-
-      <div class="dish-card">
-        <img src="Images/tea.jpg" alt="Чай">
-        <p class="price">80₽</p>
-        <p class="name">Чёрный чай</p>
-        <p class="weight">250 мл</p>
-        <button>Добавить</button>
-      </div>
-
-      <div class="dish-card">
-        <img src="Images/cofe.jpg" alt="Капучино">
-        <p class="price">140₽</p>
-        <p class="name">Капучино</p>
-        <p class="weight">200 мл</p>
-        <button>Добавить</button>
-      </div>
-
-    </div>
+    <div class="dish-grid"></div>
   </section>
 </main>
+
+<section class="order-section">
+  <h2 class="order-title">Сделать заказ</h2>
+
+  <form action="https://httpbin.org/post" method="post" class="order-form" id="order-form">
+    <!-- Блок: Ваш заказ -->
+    <fieldset class="order-summary">
+      <legend>Ваш заказ</legend>
+
+      <!-- сюда JS будет подставлять выбранные блюда/стоимость -->
+      <div id="order-items">
+        <p><strong>Ничего не выбрано</strong></p>
+      </div>
+
+      <!-- комментарий ДОЛЖЕН быть в блоке заказа и всегда оставаться -->
+      <label for="comment">Комментарии к заказу</label>
+      <textarea id="comment" name="comment" rows="4"></textarea>
+    </fieldset>
+
+    <!-- Блок: Данные клиента -->
+    <fieldset class="client-block">
+      <legend>Ваши данные</legend>
+
+      <label for="name">Имя</label>
+      <input type="text" id="name" name="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+
+      <label class="checkbox">
+        <input type="checkbox" id="subscribe" name="subscribe" checked />
+        Получать информацию о скидках и акциях
+      </label>
+
+      <label for="phone">Номер телефона</label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="address">Адрес доставки</label>
+      <input type="text" id="address" name="address" required />
+      <p class="hint">Доставка осуществляется только по Москве</p>
+
+      <p>Время доставки:</p>
+
+      <label class="radio-label">
+        <input type="radio" name="delivery_time_option" value="asap" required />
+        Как можно скорее
+      </label>
+
+      <label class="radio-label">
+        <input type="radio" name="delivery_time_option" value="specified" required />
+        К указанному времени
+      </label>
+
+      <label for="delivery-time">Укажите время доставки</label>
+      <input type="time" id="delivery-time" name="delivery_time" min="07:00" max="23:00" step="300" />
+      <p class="hint">Доступное время доставки с 7:00 до 23:00</p>
+
+      <div class="buttons">
+        <button type="reset">Сбросить</button>
+        <button type="submit">Отправить</button>
+      </div>
+    </fieldset>
+  </form>
+</section>
 
 <footer>
   <p>Позвонить нам: +7-000-000-00-00</p>
 </footer>
 
+<!-- Скрипты -->
+<script src="dishes.js"></script>
+<script src="order.js"></script>
+<script src="render.js"></script>
+<script>
+  // инициализация
+  document.addEventListener('DOMContentLoaded', () => {
+    renderDishes();      // динамически рисуем карточки
+    updateOrderBlock();  // первичное состояние "Ничего не выбрано"
+
+    // делаем time обязательным, если выбран "к указанному времени"
+    const rAsap = document.querySelector('input[name="delivery_time_option"][value="asap"]');
+    const rSpecified = document.querySelector('input[name="delivery_time_option"][value="specified"]');
+    const timeInput = document.getElementById('delivery-time');
+
+    function toggleTimeRequired() {
+      if (rSpecified.checked) {
+        timeInput.required = true;
+      } else {
+        timeInput.required = false;
+        timeInput.value = '';
+      }
+    }
+    rAsap.addEventListener('change', toggleTimeRequired);
+    rSpecified.addEventListener('change', toggleTimeRequired);
+
+    // сброс формы также очищает выбранные блюда
+    document.getElementById('order-form').addEventListener('reset', () => {
+      setTimeout(() => { // даём браузеру сбросить нативные поля
+        clearOrder();
+        updateOrderBlock();
+        toggleTimeRequired();
+      }, 0);
+    });
+  });
+</script>
 </body>
 </html>

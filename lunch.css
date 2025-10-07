@@ -67,3 +67,115 @@
   h1, section h2 { text-align: center; }
   .dish-grid { grid-template-columns: 1fr; }
 }
+
+/* --- Блок формы заказа --- */
+.order-section {
+  margin: 60px auto;
+  max-width: 1200px;        /* та же ширина, что и у dish-grid */
+  padding: 0 40px;          /* горизонтальные внутренние отступы */
+  box-sizing: border-box;   /* чтобы padding не раздувал ширину */
+  font-family: 'Roboto', sans-serif;
+}
+
+
+.order-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.order-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.order-form fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-form legend {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.order-form label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.order-form select,
+.order-form input[type="text"],
+.order-form input[type="email"],
+.order-form input[type="tel"],
+.order-form input[type="time"],
+.order-form textarea {
+  width: 100%;
+  height: 45px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.order-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.radio-label {
+  display: flex;          /* выстраивает кружок и текст в одну линию */
+  align-items: center;    /* вертикально центрирует */
+  gap: 8px;               /* расстояние между кружком и текстом */
+  font-size: 18px;        /* ваш размер шрифта */
+}
+
+.radio-label input[type="radio"] {
+  margin: 0;              /* убираем браузерный стандартный отступ */
+}
+
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.hint {
+  font-size: 14px;
+  color: gray;
+  margin-top: -10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.buttons button {
+  flex: 1;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #f1eee9;
+  transition: background 0.3s;
+}
+
+.buttons button:hover {
+  background-color: tomato;
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .order-form {
+    grid-template-columns: 1fr;
+  }
+}
