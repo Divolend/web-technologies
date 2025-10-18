@@ -1,17 +1,18 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* ========= БАЗА ========= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
 }
 
 body {
   font-family: 'Roboto', sans-serif;
   color: #333;
-  background-color: #fff;
+  background: #fff;
   line-height: 1.6;
 }
 
-/* Шапка */
+/* ========= ШАПКА / НАВИГАЦИЯ ========= */
 header {
   text-align: center;
   padding: 20px;
@@ -21,10 +22,9 @@ header h1 {
   margin-bottom: 15px;
 }
 
-/* Навигация */
 nav {
   display: flex;
-  justify-content: space-between; /* по основной оси равномерно */
+  justify-content: space-between;
   background-color: #87CEFA;
   padding: 10px 20px;
 }
@@ -36,68 +36,202 @@ nav a {
   padding: 5px 10px;
 }
 
-nav a:hover {
-  color: #ff6600;
-}
+nav a:hover { color: #ff6600; }
 
 nav a.active {
-  color: #ff6600; /* активный пункт меню */
+  color: #ff6600;
   font-weight: bold;
 }
 
-/* Основной контент */
-main {
-  padding: 20px;
+/* ========= ОСНОВНОЙ КОНТЕНТ ========= */
+main { padding: 20px; }
+h1, h2 { margin-bottom: 15px; }
+section { margin-bottom: 40px; }
+
+.hero-image {
+  width: 100%;
+  height: auto;      /* сохраняет пропорции */
+  display: block;
+  margin: 0 auto;
 }
 
-h1, h2 {
-  margin-bottom: 15px;
+/* ========= СЕТКА БЛЮД / КАРТОЧКИ ========= */
+.dish-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: start;
 }
 
-section {
+.dish-card {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  border-radius: 35px;
+  background: #fff;
+  filter: drop-shadow(17px 19px 24px rgba(0,0,0,0.13));
+  cursor: pointer;
+  transition: border 0.3s, transform .1s ease-in-out;
+  height: 100%;
+}
+
+.dish-card:hover { border: 2px solid tomato; }
+
+.dish-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* квадрат */
+  object-fit: cover;
+  border-radius: 35px;
+}
+
+.price, .name { font-size: 20px; }
+.weight { color: gray; }
+
+.dish-card button {
+  margin-top: auto;
+  padding: 12px 34px;
+  border-radius: 10px;
+  background: #f1eee9;
+  border: none;
+  cursor: pointer;
+  transition: background .3s;
+}
+
+.dish-card:hover button { background: tomato; color: #fff; }
+
+/* ========= БЛОК ОФОРМЛЕНИЯ ЗАКАЗА ========= */
+.order-section {
+  margin: 60px auto;
+  max-width: 1200px;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+.order-title {
+  text-align: center;
+  font-size: 32px;
   margin-bottom: 40px;
 }
 
-img {
-  width: 100%;
-  height: auto;
-  margin-bottom: 15px;
+.order-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
 }
 
-/* Классы для блюд */
-.all-dishes > .dishes-container {
+.order-form fieldset {
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.order-form legend {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.order-form label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.order-form select,
+.order-form input[type="text"],
+.order-form input[type="email"],
+.order-form input[type="tel"],
+.order-form input[type="time"],
+.order-form textarea {
+  width: 100%;
+  height: 45px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.order-form textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+}
+
+.radio-label input[type="radio"] { margin: 0; }
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.hint {
+  font-size: 14px;
+  color: gray;
+  margin-top: -10px;
+}
+
+.buttons {
   display: flex;
   gap: 20px;
-  flex-wrap: wrap;
 }
 
-.dish {
-  flex: 1 1 30%;
-  text-align: center;
+.buttons button {
+  flex: 1;
+  padding: 12px;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #f1eee9;
+  transition: background 0.3s;
 }
 
-.dish img {
-  border-radius: 5px;
+.buttons button:hover { background-color: tomato; color: #fff; }
+
+/* Обёртка таблицы */
+.popular-table-wrapper {
+  background-color: #87CEFA; /* голубой, как шапка */
+  padding: 30px;
+  border-radius: 12px;
+  margin: 40px auto;
+  width: 90%;
 }
 
-/* Таблица */
-table {
+/* Стили таблицы */
+.popular-table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #E0F7FA;
+  font-size: 22px;
 }
 
-th, td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: center;
+.popular-table th {
+  padding: 18px;
+  text-align: left;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
 }
 
-th {
-  background-color: #87CEFA;
+.popular-table td {
+  padding: 16px;
+  font-size: 22px;
+  color: #333;
 }
 
-/* Футер */
+.popular-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* ========= ФУТЕР ========= */
 footer {
   background-color: black;
   color: white;
@@ -105,47 +239,23 @@ footer {
   padding: 15px;
 }
 
-footer a {
-  color: white;
-  text-decoration: none;
+footer a { color: white; text-decoration: none; }
+footer a:hover { color: #ff6600; }
+
+/* ========= АДАПТИВ ========= */
+@media (max-width: 900px) {
+  .order-form { grid-template-columns: 1fr; }
 }
 
-footer a:hover {
-  color: #ff6600;
-}
-
-/* Адаптивность */
-
-/* ≤800px */
 @media (max-width: 800px) {
-  .all-dishes img {
-    width: 500px; 
-    max-width: 100%;
-  }
+  .dish-grid { grid-template-columns: repeat(2, 1fr); }
+  header h1 { text-align: center; width: 100%; }
+  nav { justify-content: space-between; }
 }
 
-/* ≤600px */
 @media (max-width: 600px) {
-  nav {
-    flex-direction: column;          /* вертикальное меню */
-    align-items: center;             /* по центру поперечной оси */
-  }
-  nav a {
-    font-size: 22px;                 /* +4px к размеру */
-    margin: 10px 0;
-  }
-}
-
-/* ≤400px */
-@media (max-width: 400px) {
-  table {
-    font-size: 14px;  /* уменьшение шрифта на 2px */
-  }
-  th, td {
-    padding: 8px;
-  }
-  /* ещё минус 2px для самой маленькой ширины */
-  table {
-    font-size: 12px;
-  }
+  nav { flex-direction: column; align-items: center; font-size: 18px; }
+  nav a { margin: 8px 0; }
+  h1, section h2 { text-align: center; }
+  .dish-grid { grid-template-columns: 1fr; }
 }

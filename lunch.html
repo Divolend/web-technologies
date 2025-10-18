@@ -14,31 +14,128 @@
   <h1>Food Construct</h1>
   <nav>
     <a href="index.html">О нас</a>
-    <a href="lunch.html" id="active">Собрать ланч</a>
+    <a href="lunch.html" class="active">Собрать ланч</a>
     <a href="#">Заказы</a>
     <a href="#">Контакты</a>
   </nav>
 </header>
 
 <main>
+  <!-- ===== БЛОК: ДОСТУПНЫЕ КОМБО (иконки) ===== -->
+  <section class="combo-section">
+    <h2>Доступные для заказа комбо</h2>
+    <div class="combo-grid">
+      
+      <!-- A: Суп + Главное блюдо + Салат + Напиток -->
+      <div class="combo-card combo-card--four">
+        <div class="combo-row">
+          <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
+          <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
+          <div class="combo-item"><img src="Images/salad.png" alt="Салат"><span>Салат</span></div>
+          <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
+        </div>
+      </div>
+
+      <!-- B: Суп + Главное блюдо + Напиток -->
+      <div class="combo-card combo-card--smd">
+        <div class="combo-row">
+          <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
+          <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
+          <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
+        </div>
+      </div>
+
+      <!-- C: Суп + Салат + Напиток  (+ десерт снизу в этой же карточке) -->
+      <div class="combo-card combo-card--ssd">
+        <div class="combo-row">
+          <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
+          <div class="combo-item"><img src="Images/salad.png" alt="Салат"><span>Салат</span></div>
+          <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
+        </div>
+
+        <div class="dessert-row">
+          <div class="combo-item">
+            <img src="Images/desert.png" alt="Десерт"><span>Десерт</span>
+          </div>
+          <p class="dessert-note">(Можно добавить к любому заказу)</p>
+        </div>
+      </div>
+
+      <!-- D: Главное блюдо + Салат + Напиток -->
+      <div class="combo-card combo-card--msd">
+        <div class="combo-row">
+          <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
+          <div class="combo-item"><img src="Images/salad.png" alt="Салат"><span>Салат</span></div>
+          <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
+        </div>
+      </div>
+
+      <!-- E: Главное блюдо + Напиток -->
+      <div class="combo-card combo-card--md">
+        <div class="combo-row">
+          <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
+          <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Супы -->
-  <section id="soups">
+  <section id="soups" data-category="soup">
     <h2>Выберите суп</h2>
+    <div class="filters">
+      <a href="#" data-kind="fish">рыбный</a>
+      <a href="#" data-kind="meat">мясной</a>
+      <a href="#" data-kind="veg">вегетарианский</a>
+    </div>
     <div class="dish-grid"></div>
   </section>
 
   <!-- Основные блюда -->
-  <section id="mains">
+  <section id="mains" data-category="main">
     <h2>Выберите главное блюдо</h2>
+    <div class="filters">
+      <a href="#" data-kind="fish">рыбное</a>
+      <a href="#" data-kind="meat">мясное</a>
+      <a href="#" data-kind="veg">вегетарианское</a>
+    </div>
+    <div class="dish-grid"></div>
+  </section>
+
+  <!-- Салаты и стартеры -->
+  <section id="salads" data-category="salad">
+    <h2>Выберите салат или стартер</h2>
+    <div class="filters">
+      <a href="#" data-kind="fish">рыбный</a>
+      <a href="#" data-kind="meat">мясной</a>
+      <a href="#" data-kind="veg">вегетарианский</a>
+    </div>
     <div class="dish-grid"></div>
   </section>
 
   <!-- Напитки -->
-  <section id="drinks">
+  <section id="drinks" data-category="drink">
     <h2>Выберите напиток</h2>
+    <div class="filters">
+      <a href="#" data-kind="cold">холодный</a>
+      <a href="#" data-kind="hot">горячий</a>
+    </div>
+    <div class="dish-grid"></div>
+  </section>
+
+  <!-- Десерты -->
+  <section id="desserts" data-category="dessert">
+    <h2>Выберите десерт</h2>
+    <div class="filters">
+      <a href="#" data-kind="small">маленькая порция</a>
+      <a href="#" data-kind="medium">средняя порция</a>
+      <a href="#" data-kind="large">большая порция</a>
+    </div>
     <div class="dish-grid"></div>
   </section>
 </main>
+
+  <!-- Сделать заказ -->
 
 <section class="order-section">
   <h2 class="order-title">Сделать заказ</h2>
@@ -48,12 +145,11 @@
     <fieldset class="order-summary">
       <legend>Ваш заказ</legend>
 
-      <!-- сюда JS будет подставлять выбранные блюда/стоимость -->
       <div id="order-items">
         <p><strong>Ничего не выбрано</strong></p>
       </div>
 
-      <!-- комментарий ДОЛЖЕН быть в блоке заказа и всегда оставаться -->
+      <!-- комментарий должен быть в блоке заказа и оставаться всегда -->
       <label for="comment">Комментарии к заказу</label>
       <textarea id="comment" name="comment" rows="4"></textarea>
     </fieldset>
@@ -115,7 +211,7 @@
 <script>
   // инициализация
   document.addEventListener('DOMContentLoaded', () => {
-    renderDishes();      // динамически рисуем карточки
+    renderDishes();      // динамически рисуем карточки (со всеми категориями и data-kind)
     updateOrderBlock();  // первичное состояние "Ничего не выбрано"
 
     // делаем time обязательным, если выбран "к указанному времени"

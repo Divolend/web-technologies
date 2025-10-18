@@ -1,181 +1,285 @@
-/* Сетка для блоков с блюдами */
-.dish-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;                
-  align-items: start;
-}
+/* ========= БАЗА ========= */
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Карточка блюда */
-.dish-card {
-  display: flex;
-  flex-direction: column;
-  padding: 30px 40px;
-  border-radius: 35px;
-  background: #fff;
-  filter: drop-shadow(17px 19px 24px rgba(0,0,0,0.13));
-  cursor: pointer;
-  transition: border 0.3s;
-  height: 100%;
-}
+html, body { height: 100%; }
 
-.dish-card:hover {
-  border: 2px solid tomato;
-}
-
-/* Размер картинок */
-.dish-card img {
-  width: 100%;
-  aspect-ratio: 1 / 1;   /* квадрат: высота = ширина */
-  object-fit: cover;     /* заполняет квадрат без искажения, обрезая края */
-  border-radius: 35px;
-}
-
-/* Текстовые элементы */
-.price,
-.name {
-  font-size: 20px;      
-}
-
-.weight {
-  color: gray;
-}
-
-.dish-card button {
-  margin-top: auto;
-  padding: 12px 34px;
-  border-radius: 10px;
-  background: #f1eee9;
-  border: none;
-  cursor: pointer;
-  transition: background .3s;
-}
-
-.dish-card:hover button {
-  background: tomato;
-  color: #fff;
-}
-
-/* Адаптивность */
-@media (max-width:800px){
-  .dish-grid { grid-template-columns: repeat(2, 1fr); }
-  header h1 { text-align: center; width: 100%; }
-  nav { justify-content: space-between; }
-}
-@media (max-width:600px){
-  nav { flex-direction: column; align-items: center; font-size: 18px; }
-  h1, section h2 { text-align: center; }
-  .dish-grid { grid-template-columns: 1fr; }
-}
-
-/* --- Блок формы заказа --- */
-.order-section {
-  margin: 60px auto;
-  max-width: 1200px;        /* та же ширина, что и у dish-grid */
-  padding: 0 40px;          /* горизонтальные внутренние отступы */
-  box-sizing: border-box;   /* чтобы padding не раздувал ширину */
+body {
   font-family: 'Roboto', sans-serif;
+  color: #333;
+  background: #fff;
+  line-height: 1.6;
 }
 
+/* ========= ШАПКА / НАВИГАЦИЯ ========= */
+header { text-align: center; padding: 20px; }
+header h1 { margin-bottom: 15px; }
 
-.order-title {
-  text-align: center;
-  font-size: 32px;
-  margin-bottom: 40px;
-}
-
-.order-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-.order-form fieldset {
-  border: none;
+nav {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  background-color: #87CEFA;
+  padding: 10px 20px;
 }
-
-.order-form legend {
-  font-size: 24px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.order-form label {
+nav a {
+  text-decoration: none;
+  color: #333;
   font-size: 18px;
-  font-weight: 500;
+  padding: 5px 10px;
 }
+nav a:hover { color: #ff6600; }
+nav a.active { color: #ff6600; font-weight: bold; }
+
+/* ========= ОСНОВНОЙ КОНТЕНТ ========= */
+main { padding: 20px; }
+h1, h2 { margin-bottom: 15px; }
+section { margin-bottom: 40px; }
+
+/* ========= СЕТКА БЛЮД / КАРТОЧКИ ========= */
+.dish-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap:20px;
+  align-items:start;
+}
+.dish-card{
+  display:flex; flex-direction:column;
+  padding:30px 40px;
+  border-radius:35px;
+  background:#fff;
+  filter: drop-shadow(17px 19px 24px rgba(0,0,0,.13));
+  cursor:pointer;
+  transition:border .3s, transform .1s ease-in-out;
+  height:100%;
+}
+.dish-card:hover{ border:2px solid tomato; }
+.dish-card img{
+  width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:35px;
+}
+.price,.name{ font-size:20px; }
+.weight{ color:gray; }
+.dish-card button{
+  margin-top:auto; padding:12px 34px; border-radius:10px;
+  background:#f1eee9; border:none; cursor:pointer; transition:background .3s;
+}
+.dish-card:hover button{ background:tomato; color:#fff; }
+
+/* ========= БЛОК ОФОРМЛЕНИЯ ЗАКАЗА ========= */
+.order-section{ margin:60px auto; max-width:1200px; padding:0 40px; }
+.order-title{ text-align:center; font-size:32px; margin-bottom:40px; }
+.order-form{ display:grid; grid-template-columns:1fr 1fr; gap:40px; }
+.order-form fieldset{ border:none; display:flex; flex-direction:column; gap:20px; }
+.order-form legend{ font-size:24px; font-weight:700; margin-bottom:10px; }
+.order-form label{ font-size:18px; font-weight:500; }
 
 .order-form select,
 .order-form input[type="text"],
 .order-form input[type="email"],
 .order-form input[type="tel"],
 .order-form input[type="time"],
-.order-form textarea {
-  width: 100%;
-  height: 45px;
-  padding: 8px 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
+.order-form textarea{
+  width:100%; height:45px; padding:8px 12px; font-size:16px;
+  border:1px solid #ccc; border-radius:6px;
+}
+.order-form textarea{ min-height:100px; resize:vertical; }
+
+.radio-label{ display:flex; align-items:center; gap:8px; font-size:18px; }
+.radio-label input[type="radio"]{ margin:0; }
+.checkbox{ display:flex; align-items:center; gap:10px; font-size:16px; }
+.hint{ font-size:14px; color:gray; margin-top:-10px; }
+
+.buttons{ display:flex; gap:20px; }
+.buttons button{
+  flex:1; padding:12px; font-size:18px; border:none; border-radius:6px;
+  cursor:pointer; background-color:#f1eee9; transition:background .3s;
+}
+.buttons button:hover{ background-color:tomato; color:#fff; }
+
+/* ========= ФУТЕР ========= */
+footer{ background:black; color:white; text-align:center; padding:15px; }
+footer a{ color:white; text-decoration:none; }
+footer a:hover{ color:#ff6600; }
+
+/* ========= АДАПТИВ ОСНОВНЫХ СЕТОК ========= */
+@media (max-width: 900px){ .order-form{ grid-template-columns:1fr; } }
+@media (max-width: 800px){
+  .dish-grid{ grid-template-columns: repeat(2,1fr); }
+  header h1{ text-align:center; width:100%; }
+  nav{ justify-content:space-between; }
+}
+@media (max-width: 600px){
+  nav{ flex-direction:column; align-items:center; font-size:18px; }
+  nav a{ margin:8px 0; }
+  h1, section h2{ text-align:center; }
+  .dish-grid{ grid-template-columns:1fr; }
 }
 
-.order-form textarea {
-  min-height: 100px;
-  resize: vertical;
+/* ===== Фильтры категорий (зелёные чипы) ===== */
+section[data-category] .filters{
+  display:flex; flex-wrap:wrap; gap:12px; margin:8px 0 18px;
+}
+section[data-category] .filters a,
+section[data-category] .filters a:link,
+section[data-category] .filters a:visited{
+  text-decoration:none;
+  padding:8px 12px; font-size:16px; line-height:1;
+  border-radius:12px; border:1px solid #c8e6c9;
+  background:#f7fbf8; color:#2e7d32;
+  user-select:none;
+  transition:background .2s, color .2s, border-color .2s, transform .05s;
+}
+section[data-category] .filters a:hover{ background:#ecf7ef; border-color:#a5d6a7; }
+section[data-category] .filters a:active{ transform:scale(.98); }
+section[data-category] .filters a.active{
+  background:#e3f2e9; border-color:#81c784; color:#1b5e20;
+}
+section[data-category] .filters a:focus-visible{
+  outline:2px solid #81c784; outline-offset:2px; border-radius:14px;
 }
 
-.radio-label {
-  display: flex;          /* выстраивает кружок и текст в одну линию */
-  align-items: center;    /* вертикально центрирует */
-  gap: 8px;               /* расстояние между кружком и текстом */
-  font-size: 18px;        /* ваш размер шрифта */
+/* ================================
+   КОМБО (иконки)
+   ================================ */
+.combo-section{
+  max-width:1120px;
+  margin:16px auto;
+  padding:0 16px;
+
+  /* переменные для управления размерами */
+  --icon: 50px;
+  --gap: 20px;
+  --grid-col-gap: 36px;
+  --grid-row-gap: 36px;
+}
+.combo-section h2{
+  text-align:center; font-size:28px; font-weight:800; margin-bottom:14px;
 }
 
-.radio-label input[type="radio"] {
-  margin: 0;              /* убираем браузерный стандартный отступ */
+/* 3 колонки; правая карточка высокая (на 2 ряда) */
+.combo-grid{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "four smd ssd"
+    "msd  md  ssd";
+  column-gap: var(--grid-col-gap);
+  row-gap: var(--grid-row-gap);
+  justify-items:center;
+  align-items:start;
+}
+.combo-card--four{ grid-area:four; }
+.combo-card--smd { grid-area:smd; }
+.combo-card--ssd { grid-area:ssd; }
+.combo-card--msd { grid-area:msd; }
+.combo-card--md  { grid-area:md; }
+
+.combo-card{ width:100%; display:flex; flex-direction:column; align-items:center; }
+
+/* ряд иконок */
+.combo-row{
+  display:flex; justify-content:center; align-items:flex-start;
+  gap:var(--gap); flex-wrap:nowrap;
+}
+/* иконка + подпись */
+.combo-item{
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  min-width: calc(var(--icon) + 16px);
+}
+.combo-item img{
+  width:var(--icon); height:var(--icon); object-fit:contain; display:block;
+  transition: transform .15s ease;
+}
+.combo-item img:hover{ transform: translateY(-3px) scale(1.04); }
+.combo-item span{
+  font-size:16px; line-height:1.1; color:#111; text-align:center; white-space:nowrap;
 }
 
+/* десерт в правой карточке */
+.dessert-row{ margin-top:12px; display:flex; flex-direction:column; align-items:center; gap:6px; }
+.dessert-note{ font-size:14px; font-style:italic; color:#5a5a5a; }
 
-.checkbox {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 16px;
+/* ——— Адаптив для комбо ——— */
+
+/* немного уже: остаются 3 колонки, уменьшаем размеры через переменные */
+@media (max-width: 1100px){
+  .combo-section{ --icon: 46px; --gap: 18px; --grid-col-gap: 30px; --grid-row-gap: 28px; }
 }
 
-.hint {
-  font-size: 14px;
-  color: gray;
-  margin-top: -10px;
-}
-
-.buttons {
-  display: flex;
-  gap: 20px;
-}
-
-.buttons button {
-  flex: 1;
-  padding: 12px;
-  font-size: 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  background-color: #f1eee9;
-  transition: background 0.3s;
-}
-
-.buttons button:hover {
-  background-color: tomato;
-  color: #fff;
-}
-
-@media (max-width: 900px) {
-  .order-form {
-    grid-template-columns: 1fr;
+/* стабильные 2 колонки; правая высокая уходит на третью строку */
+@media (max-width: 1024px){
+  .combo-section{ --icon: 44px; --gap: 16px; --grid-col-gap: 36px; --grid-row-gap: 32px; }
+  .combo-grid{
+    grid-template-columns: minmax(320px,1fr) minmax(320px,1fr);
+    grid-template-areas:
+      "four smd"
+      "msd  md"
+      "ssd  ssd";
+    justify-content:center;
+    justify-items:center;
   }
 }
+
+/* ещё компактнее, но всё помещается */
+@media (max-width: 760px){
+  .combo-section{ --icon: 40px; --gap: 14px; --grid-col-gap: 26px; --grid-row-gap: 26px; }
+}
+
+/* телефон: одна колонка, аккуратная вертикальная лента */
+@media (max-width: 640px){
+  .combo-section{ --icon: 48px; --gap: 18px; --grid-col-gap:0; --grid-row-gap:22px; }
+  .combo-section h2{ font-size:24px; }
+  .combo-grid{
+    grid-template-columns:1fr;
+    grid-template-areas:
+      "four"
+      "smd"
+      "msd"
+      "md"
+      "ssd";
+  }
+}
+
+/* ===== УВЕДОМЛЕНИЕ (модалка) ===== */
+.notice-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.25);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+}
+
+.notice-modal{
+  width: min(680px, 92vw);
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.18);
+  padding: 32px 28px 26px;
+  text-align: center;
+}
+
+.notice-title{
+  font-size: clamp(20px, 2.6vw, 28px);
+  line-height: 1.25;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 18px;
+}
+
+.notice-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 26px;
+  min-width: 180px;
+  font-size: 20px;
+  border-radius: 14px;
+  border: 2px solid #111;
+  background: #fff;
+  cursor: pointer;
+  transition: color .2s, background .2s, transform .05s;
+}
+.notice-btn:hover{ background:#111; color:#fff; }
+.notice-btn:active{ transform: scale(.98); }
+
