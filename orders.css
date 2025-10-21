@@ -1,0 +1,74 @@
+/* orders.css */
+.container { max-width: 980px; margin: 0 auto; padding: 24px 16px; }
+h2 { margin: 24px 0 16px; }
+
+.table-wrap { overflow-x: auto; }
+.orders-table { width: 100%; border-collapse: collapse; background: #fff; }
+.orders-table th, .orders-table td { padding: 12px 10px; border-bottom: 1px solid #eee; vertical-align: top; }
+.orders-table thead th { font-weight: 700; text-align: left; background: #fafafa; border-bottom-color:#e6e6e6; }
+.orders-table tbody tr:hover { background: #fcfcfc; }
+
+.muted { color: #666; }
+
+.actions { display: flex; gap: 10px; }
+.btn-icon { background: none; border: none; cursor: pointer; padding: 4px 6px; border-radius: 6px; }
+.btn-icon:hover { background: #f2f2f2; }
+.btn-primary { background:#e65; color:#fff; border:none; padding:8px 14px; border-radius:8px; cursor:pointer; }
+.btn-primary:hover { filter: brightness(0.95); }
+.btn-secondary { background:#eee; border:none; padding:8px 14px; border-radius:8px; cursor:pointer; }
+.btn-danger { background:#c0392b; color:#fff; border:none; padding:8px 14px; border-radius:8px; cursor:pointer; }
+
+.visually-hidden { position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden; }
+
+/* Modal */
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,.45);
+  display: none; align-items: center; justify-content: center; z-index: 999;
+}
+.modal {
+  width: min(720px, calc(100% - 32px));
+  background: #fff; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,.2);
+  overflow: hidden;
+}
+.modal header {
+  display:flex; justify-content: space-between; align-items:center;
+  padding: 14px 16px; border-bottom:1px solid #eee;
+}
+.modal header h3 { margin:0; font-size: 18px; }
+.modal header .close { background:none; border:none; font-size:22px; cursor:pointer; padding:4px 8px; }
+.modal .modal-body { padding: 16px; }
+.modal footer { display:flex; gap:10px; justify-content:flex-end; padding:14px 16px; border-top:1px solid #eee; }
+
+.modal .row { display:grid; grid-template-columns: 220px 1fr; gap:8px 12px; margin-bottom: 8px; }
+.modal label { color:#444; }
+.modal input[type="text"], .modal input[type="email"], .modal input[type="tel"], .modal input[type="time"], .modal textarea {
+  width:100%; padding:8px 10px; border:1px solid #ddd; border-radius:8px; outline:none;
+}
+.modal textarea { min-height: 90px; resize: vertical; }
+
+.badge-now { display:inline-block; padding:2px 8px; background:#eee; border-radius: 999px; }
+
+/* прибиваем футер к низу */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  background: #fff;
+}
+
+main.container {
+  flex: 1 0 auto;
+}
+
+footer {
+  flex-shrink: 0;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 12px 0;
+  margin-top: auto;
+}

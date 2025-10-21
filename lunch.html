@@ -15,7 +15,8 @@
   <nav>
     <a href="index.html">О нас</a>
     <a href="lunch.html" class="active">Собрать ланч</a>
-    <a href="#">Заказы</a>
+    <a href="checkout.html" id="nav-checkout-link">Оформить заказ</a>
+    <a href="orders.html">Заказы</a>
     <a href="#">Контакты</a>
   </nav>
 </header>
@@ -25,8 +26,7 @@
   <section class="combo-section">
     <h2>Доступные для заказа комбо</h2>
     <div class="combo-grid">
-      
-      <!-- A: Суп + Главное блюдо + Салат + Напиток -->
+      <!-- A -->
       <div class="combo-card combo-card--four">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
@@ -35,8 +35,7 @@
           <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
         </div>
       </div>
-
-      <!-- B: Суп + Главное блюдо + Напиток -->
+      <!-- B -->
       <div class="combo-card combo-card--smd">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
@@ -44,15 +43,13 @@
           <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
         </div>
       </div>
-
-      <!-- C: Суп + Салат + Напиток  (+ десерт снизу в этой же карточке) -->
+      <!-- C -->
       <div class="combo-card combo-card--ssd">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
           <div class="combo-item"><img src="Images/salad.png" alt="Салат"><span>Салат</span></div>
           <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
         </div>
-
         <div class="dessert-row">
           <div class="combo-item">
             <img src="Images/desert.png" alt="Десерт"><span>Десерт</span>
@@ -60,8 +57,7 @@
           <p class="dessert-note">(Можно добавить к любому заказу)</p>
         </div>
       </div>
-
-      <!-- D: Главное блюдо + Салат + Напиток -->
+      <!-- D -->
       <div class="combo-card combo-card--msd">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
@@ -69,8 +65,7 @@
           <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
         </div>
       </div>
-
-      <!-- E: Главное блюдо + Напиток -->
+      <!-- E -->
       <div class="combo-card combo-card--md">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
@@ -135,109 +130,32 @@
   </section>
 </main>
 
-  <!-- Сделать заказ -->
-
-<section class="order-section">
-  <h2 class="order-title">Сделать заказ</h2>
-
-  <form action="https://httpbin.org/post" method="post" class="order-form" id="order-form">
-    <!-- Блок: Ваш заказ -->
-    <fieldset class="order-summary">
-      <legend>Ваш заказ</legend>
-
-      <div id="order-items">
-        <p><strong>Ничего не выбрано</strong></p>
-      </div>
-
-      <!-- комментарий должен быть в блоке заказа и оставаться всегда -->
-      <label for="comment">Комментарии к заказу</label>
-      <textarea id="comment" name="comment" rows="4"></textarea>
-    </fieldset>
-
-    <!-- Блок: Данные клиента -->
-    <fieldset class="client-block">
-      <legend>Ваши данные</legend>
-
-      <label for="name">Имя</label>
-      <input type="text" id="name" name="name" required />
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
-
-      <label class="checkbox">
-        <input type="checkbox" id="subscribe" name="subscribe" checked />
-        Получать информацию о скидках и акциях
-      </label>
-
-      <label for="phone">Номер телефона</label>
-      <input type="tel" id="phone" name="phone" required />
-
-      <label for="address">Адрес доставки</label>
-      <input type="text" id="address" name="address" required />
-      <p class="hint">Доставка осуществляется только по Москве</p>
-
-      <p>Время доставки:</p>
-
-      <label class="radio-label">
-        <input type="radio" name="delivery_time_option" value="asap" required />
-        Как можно скорее
-      </label>
-
-      <label class="radio-label">
-        <input type="radio" name="delivery_time_option" value="specified" required />
-        К указанному времени
-      </label>
-
-      <label for="delivery-time">Укажите время доставки</label>
-      <input type="time" id="delivery-time" name="delivery_time" min="07:00" max="23:00" step="300" />
-      <p class="hint">Доступное время доставки с 7:00 до 23:00</p>
-
-      <div class="buttons">
-        <button type="reset">Сбросить</button>
-        <button type="submit">Отправить</button>
-      </div>
-    </fieldset>
-  </form>
-</section>
+<!-- Sticky-панель перехода к оформлению -->
+<aside class="checkout-sticky is-hidden" id="checkout-sticky">
+  <div class="checkout-sticky__inner">
+    <div class="checkout-sticky__sum">
+      Текущая сумма: <span id="sticky-total">0</span>₽
+    </div>
+    <a id="go-checkout" class="checkout-sticky__btn is-disabled" href="checkout.html" aria-disabled="true">
+      Перейти к оформлению
+    </a>
+  </div>
+</aside>
 
 <footer>
   <p>Позвонить нам: +7-000-000-00-00</p>
 </footer>
 
-<!-- Скрипты -->
-<script src="dishes.js"></script>
-<script src="order.js"></script>
+<!-- Скрипты: корзина → API → рендер -->
+<script src="cart.js"></script>
+<script src="api.js"></script>
 <script src="render.js"></script>
 <script>
-  // инициализация
-  document.addEventListener('DOMContentLoaded', () => {
-    renderDishes();      // динамически рисуем карточки (со всеми категориями и data-kind)
-    updateOrderBlock();  // первичное состояние "Ничего не выбрано"
-
-    // делаем time обязательным, если выбран "к указанному времени"
-    const rAsap = document.querySelector('input[name="delivery_time_option"][value="asap"]');
-    const rSpecified = document.querySelector('input[name="delivery_time_option"][value="specified"]');
-    const timeInput = document.getElementById('delivery-time');
-
-    function toggleTimeRequired() {
-      if (rSpecified.checked) {
-        timeInput.required = true;
-      } else {
-        timeInput.required = false;
-        timeInput.value = '';
-      }
-    }
-    rAsap.addEventListener('change', toggleTimeRequired);
-    rSpecified.addEventListener('change', toggleTimeRequired);
-
-    // сброс формы также очищает выбранные блюда
-    document.getElementById('order-form').addEventListener('reset', () => {
-      setTimeout(() => { // даём браузеру сбросить нативные поля
-        clearOrder();
-        updateOrderBlock();
-        toggleTimeRequired();
-      }, 0);
-    });
+  document.addEventListener('DOMContentLoaded', async () => {
+    // грузим блюда: API → window.dishes
+    try { await loadDishes(); } catch(e) { console.warn(e); }
+    // рисуем карточки + фильтры + панель
+    renderDishes();
   });
 </script>
 </body>

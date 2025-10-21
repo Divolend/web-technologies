@@ -283,3 +283,53 @@ section[data-category] .filters a:focus-visible{
 .notice-btn:hover{ background:#111; color:#fff; }
 .notice-btn:active{ transform: scale(.98); }
 
+/* ========== Sticky-панель перехода к оформлению ========== */
+.checkout-sticky {
+  position: sticky;
+  bottom: 12px;
+  z-index: 200;
+  max-width: 1120px;
+  margin: 18px auto 0;
+  padding: 0 16px;
+}
+.checkout-sticky.is-hidden { display: none; }
+
+.checkout-sticky__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  box-shadow: 0 12px 24px rgba(0,0,0,.08);
+  border-radius: 14px;
+  padding: 14px 18px;
+}
+
+.checkout-sticky__sum {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.checkout-sticky__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 220px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  text-decoration: none;
+  background: #111;
+  color: #fff;
+  font-weight: 700;
+  transition: opacity .2s, transform .05s, background .2s;
+}
+.checkout-sticky__btn:hover { transform: translateY(-1px); }
+.checkout-sticky__btn.is-disabled {
+  pointer-events: none;
+  opacity: .45;
+}
+
+/* Отмечаем выбранные карточки */
+.dish-card.selected { border: 2px solid #2e7d32; }
+.dish-card.selected button { background: #2e7d32; color: #fff; }

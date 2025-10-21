@@ -1,0 +1,75 @@
+/* Контейнер страницы */
+.co-main{ max-width:1200px; margin:0 auto; padding:20px 20px 60px; }
+.co-h2{ margin:26px 0 18px; font-size:28px; }
+
+/* Сетка карточек выбранных блюд */
+.co-cart-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(260px,1fr));
+  gap:24px;
+}
+@media (max-width: 980px){ .co-cart-grid{ grid-template-columns: repeat(2, minmax(260px,1fr)); } }
+@media (max-width: 680px){ .co-cart-grid{ grid-template-columns: 1fr; } }
+
+.co-card{
+  display:flex; flex-direction:column; align-items:stretch;
+  background:#fff; border-radius:28px;
+  filter: drop-shadow(17px 19px 24px rgba(0,0,0,.13));
+  padding:18px 18px 14px;
+}
+.co-card img{ width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:20px; }
+.co-card .price{ font-size:18px; margin-top:12px; }
+.co-card .name{ font-size:18px; font-weight:600; }
+.co-card .weight{ color:gray; margin-bottom:10px; }
+
+.co-card .remove{
+  margin-top:auto;
+  padding:10px 16px;
+  background:#f1eee9;
+  border:none; border-radius:10px;
+  cursor:pointer;
+  transition:.2s;
+}
+.co-card .remove:hover{ background:tomato; color:#fff; }
+
+/* Сетка формы (2 колонки) */
+.co-form-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:40px;
+  align-items:start;
+  margin-top:18px;
+}
+@media (max-width: 900px){ .co-form-grid{ grid-template-columns:1fr; } }
+
+.co-summary, .co-form fieldset{
+  border:none;
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  filter: drop-shadow(17px 19px 24px rgba(0,0,0,.10));
+}
+.co-summary legend, .co-form legend{ font-size:22px; font-weight:700; margin-bottom:10px; }
+
+.co-summary p{ margin-bottom:8px; }
+.co-summary textarea{ width:100%; min-height:100px; resize:vertical; }
+
+/* правая форма */
+.co-form label{ display:block; margin-top:10px; font-weight:500; }
+.co-form input[type="text"],
+.co-form input[type="email"],
+.co-form input[type="tel"],
+.co-form input[type="time"]{
+  width:100%; height:44px; padding:8px 12px;
+  border:1px solid #ccc; border-radius:8px; font-size:16px;
+}
+.co-radio, .co-checkbox{ display:flex; gap:8px; align-items:center; margin-top:6px; }
+.co-hint{ font-size:14px; color:gray; margin:6px 0 0; }
+
+.co-buttons{ display:flex; gap:16px; margin-top:14px; }
+.co-buttons button{
+  flex:1; height:44px; border:none; border-radius:10px;
+  background:#f1eee9; cursor:pointer; transition:.2s;
+  font-size:16px;
+}
+.co-buttons button:hover{ background:tomato; color:#fff; }

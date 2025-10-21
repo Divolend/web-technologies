@@ -1,3 +1,4 @@
+
 // Массив блюд (keyword, name, price, category, count, image)
 const dishes = [
   // ===== SOUPS (2 fish, 2 meat, 2 veg) =====
