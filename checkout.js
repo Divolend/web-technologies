@@ -58,7 +58,13 @@
   function normalizeCategory(cat){
     var s = String(cat || '').toLowerCase().trim();
     if (s === 'soup' || s === 'soups') return 'soup';
-    if (s === 'main' || s === 'mains' || s === 'main_course' || s === 'maincourse') return 'main';
+    if (
+      s === 'main' ||
+      s === 'mains' ||
+      s === 'main_course' ||
+      s === 'maincourse' ||
+      s === 'main-course'   // <-- ВАЖНО: вариант с дефисом из API
+    ) return 'main';
     if (s === 'salad' || s === 'salads' || s === 'starter' || s === 'starters') return 'salad';
     if (s === 'drink' || s === 'drinks' || s === 'beverage' || s === 'beverages') return 'drink';
     if (s === 'dessert' || s === 'desserts') return 'dessert';

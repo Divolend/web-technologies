@@ -1,149 +1,157 @@
-// render.js
+// render.js — вывод блюд и фильтры-тогглы (без кнопки «всё»)
+
 function renderDishes() {
-  // страховка
   if (!Array.isArray(window.dishes)) window.dishes = [];
 
-  // словарь блюд по id для быстрых вычислений
-  window.dishesById = {};
-  window.dishes.forEach(d => { if (d && typeof d.id !== 'undefined') dishesById[d.id] = d; });
+  // Нормализация категорий к: soup | main | salad | drink | dessert
+  function normalizeCategory(cat) {
+    var s = String(cat || '').toLowerCase().trim();
+    if (s === 'soup' || s === 'soups') return 'soup';
+    if (s === 'main' || s === 'mains' || s === 'main_course' || s === 'maincourse' || s === 'main-course') return 'main';
+    if (s === 'salad' || s === 'salads' || s === 'starter' || s === 'starters') return 'salad';
+    if (s === 'drink' || s === 'drinks' || s === 'beverage' || s === 'beverages') return 'drink';
+    if (s === 'dessert' || s === 'desserts') return 'dessert';
+    return s;
+  }
 
-  const containers = {
+  // Индекс по id
+  window.dishesById = {};
+  (window.dishes || []).forEach(function (d) {
+    if (d && typeof d.id !== 'undefined') window.dishesById[d.id] = d;
+  });
+
+  // Контейнеры секций
+  var containers = {
     soup:    document.querySelector('#soups .dish-grid'),
     main:    document.querySelector('#mains .dish-grid'),
     salad:   document.querySelector('#salads .dish-grid'),
     drink:   document.querySelector('#drinks .dish-grid'),
-    dessert: document.querySelector('#desserts .dish-grid'),
+    dessert: document.querySelector('#desserts .dish-grid')
   };
-  if (!containers.soup || !containers.main || !containers.salad || !containers.drink || !containers.dessert) return;
+  if (!containers.soup || !containers.main || !containers.salad || !containers.drink || !containers.dessert) {
+    console.warn('[render] отсутствуют ожидаемые контейнеры секций');
+    return;
+  }
 
-  // группируем
-  const byCategory = { soup: [], main: [], salad: [], drink: [], dessert: [] };
-  dishes.forEach(d => { if (byCategory[d.category]) byCategory[d.category].push(d); });
-  Object.keys(byCategory).forEach(cat => byCategory[cat].sort((a,b)=>a.name.localeCompare(b.name,'ru')));
+  // Группировка по нормализованной категории
+  var byCategory = { soup: [], main: [], salad: [], drink: [], dessert: [] };
+  window.dishes.forEach(function (d) {
+    var cat = normalizeCategory(d.category);
+    if (byCategory[cat]) byCategory[cat].push(d);
+  });
 
-  // текущие выбранные id
-  const selectedIds = new Set(Cart.getIds());
+  // Сортировка по имени
+  Object.keys(byCategory).forEach(function (cat) {
+    byCategory[cat].sort(function (a, b) { return String(a.name||'').localeCompare(String(b.name||''), 'ru'); });
+  });
 
-  // фабрика карточки
-  const createCard = (dish) => {
-    const card = document.createElement('div');
+  var selected = new Set(Cart.getIds());
+
+  function createCard(dish) {
+    var card = document.createElement('article');
     card.className = 'dish-card';
     card.dataset.id = dish.id;
-    card.dataset.category = dish.category;
-    card.dataset.kind = dish.kind;
+    card.dataset.category = normalizeCategory(dish.category);
+    card.dataset.kind = String(dish.kind || '');
+    if (selected.has(dish.id)) card.classList.add('selected');
 
-    if (selectedIds.has(dish.id)) card.classList.add('selected');
+    var img = document.createElement('img');
+    img.src = dish.image; img.alt = dish.name;
 
-    const img = document.createElement('img');
-    img.src = dish.image;
-    img.alt = dish.name;
+    var price = document.createElement('p');
+    price.className = 'price'; price.textContent = (Number(dish.price)||0) + '₽';
 
-    const price = document.createElement('p');
-    price.className = 'price';
-    price.textContent = `${dish.price}₽`;
+    var name = document.createElement('p');
+    name.className = 'name'; name.textContent = dish.name || '';
 
-    const name = document.createElement('p');
-    name.className = 'name';
-    name.textContent = dish.name;
+    var weight = document.createElement('p');
+    weight.className = 'weight'; weight.textContent = dish.count || '';
 
-    const weight = document.createElement('p');
-    weight.className = 'weight';
-    weight.textContent = dish.count || '';
-
-    const btn = document.createElement('button');
+    var btn = document.createElement('button');
     btn.type = 'button';
-    btn.textContent = selectedIds.has(dish.id) ? 'Убрать' : 'Добавить';
+    btn.textContent = selected.has(dish.id) ? 'Убрать' : 'Добавить';
 
-    const toggle = (e) => {
+    function toggle(e){
       e.stopPropagation();
-      const added = Cart.toggle(dish.id); // true если добавили, false если убрали
-      if (added) {
-        card.classList.add('selected');
-        btn.textContent = 'Убрать';
-      } else {
-        card.classList.remove('selected');
-        btn.textContent = 'Добавить';
-      }
-      updateStickyPanel(); // пересчитать сумму и доступность кнопки
-    };
-
+      var added = Cart.toggle(dish.id);
+      if (added) { selected.add(dish.id); card.classList.add('selected'); btn.textContent='Убрать'; }
+      else { selected.delete(dish.id); card.classList.remove('selected'); btn.textContent='Добавить'; }
+      updateStickyPanel();
+    }
     card.addEventListener('click', toggle);
     btn.addEventListener('click', toggle);
 
-    card.append(img, price, name, weight, btn);
+    card.appendChild(img);
+    card.appendChild(price);
+    card.appendChild(name);
+    card.appendChild(weight);
+    card.appendChild(btn);
     return card;
-  };
+  }
 
-  // рендерим
-  Object.keys(byCategory).forEach(cat => {
-    const grid = containers[cat];
-    grid.innerHTML = '';
-    byCategory[cat].forEach(dish => grid.appendChild(createCard(dish)));
-  });
-
-  // фильтры
-  setupFilters();
-
-  // первичная отрисовка панели
-  updateStickyPanel();
-}
-
-function setupFilters() {
-  document.querySelectorAll('section[data-category]').forEach(section => {
-    const grid = section.querySelector('.dish-grid');
-    const links = section.querySelectorAll('.filters a');
-
-    const showAll = () =>
-      grid.querySelectorAll('.dish-card').forEach(c => { c.style.display = ''; });
-
-    const applyFilter = (kind) =>
-      grid.querySelectorAll('.dish-card').forEach(card => {
-        card.style.display = (card.dataset.kind === kind) ? '' : 'none';
-      });
-
-    links.forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const wasActive = link.classList.contains('active');
-        links.forEach(l => l.classList.remove('active'));
-
-        if (wasActive) {
-          showAll();
-        } else {
-          link.classList.add('active');
-          applyFilter(link.dataset.kind);
-        }
-      });
+  // Рисуем секции
+  Object.keys(containers).forEach(function (cat) {
+    var box = containers[cat];
+    box.innerHTML = '';
+    (byCategory[cat] || []).forEach(function (d) {
+      box.appendChild(createCard(d));
     });
   });
+
+  // При первом рендере показываем всё (нет активных фильтров)
+  ['soups','mains','salads','drinks','desserts'].forEach(function(secId){
+    var sec = document.getElementById(secId);
+    if (!sec) return;
+    sec.querySelectorAll('.dish-card').forEach(function(el){ el.style.display=''; });
+    var filter = sec.querySelector('.kind-filter');
+    if (filter) filter.querySelectorAll('.active').forEach(function(x){ x.classList.remove('active'); });
+  });
 }
 
-/* ======= панель «перейти к оформлению» ======= */
+/* Глобальный обработчик кликов по фильтрам.
+   Логика:
+   - клик по неактивной кнопке => включить фильтр по её data-kind
+   - повторный клик по активной => отключить фильтр (показать все) */
+document.addEventListener('click', function (e) {
+  var btn = e.target.closest('.kind-filter [data-kind]');
+  if (!btn) return;
+
+  e.preventDefault();
+
+  var filter = btn.closest('.kind-filter');
+  var section = btn.closest('#soups, #mains, #salads, #drinks, #desserts');
+  if (!filter || !section) return;
+
+  var isActive = btn.classList.contains('active');
+  // сбрасываем активность у всех
+  filter.querySelectorAll('.active').forEach(function (x) { x.classList.remove('active'); });
+
+  if (!isActive) {
+    // включаем новый фильтр
+    btn.classList.add('active');
+    var kind = btn.dataset.kind || '';
+    section.querySelectorAll('.dish-card').forEach(function (el) {
+      el.style.display = (el.dataset.kind === kind) ? '' : 'none';
+    });
+  } else {
+    // снимаем фильтр — показываем всё
+    section.querySelectorAll('.dish-card').forEach(function (el) { el.style.display = ''; });
+  }
+}, true);
+
+// панель «перейти к оформлению»
 function updateStickyPanel() {
-  const el = document.getElementById('checkout-sticky');
-  const sumEl = document.getElementById('sticky-total');
-  const btn = document.getElementById('go-checkout');
+  var el = document.getElementById('checkout-sticky');
+  var sumEl = document.getElementById('sticky-total');
+  var btn = document.getElementById('go-checkout');
   if (!el || !sumEl || !btn || !window.dishesById) return;
 
-  const ids = Cart.getIds();
-  const total = Cart.total(ids, dishesById);
-  const canCheckout = Cart.isValidCombo(ids, dishesById);
+  var ids = Cart.getIds();
+  var total = Cart.total(ids, window.dishesById);
+  var ok = Cart.isValidCombo(ids, window.dishesById);
 
-  // показать/скрыть панель
-  if (ids.length === 0) {
-    el.classList.add('is-hidden');
-  } else {
-    el.classList.remove('is-hidden');
-  }
-
+  if (ids.length === 0) el.classList.add('is-hidden'); else el.classList.remove('is-hidden');
   sumEl.textContent = total;
-
-  // активность кнопки
-  if (canCheckout) {
-    btn.classList.remove('is-disabled');
-    btn.setAttribute('aria-disabled', 'false');
-  } else {
-    btn.classList.add('is-disabled');
-    btn.setAttribute('aria-disabled', 'true');
-  }
+  if (ok) { btn.classList.remove('is-disabled'); btn.setAttribute('aria-disabled','false'); }
+  else { btn.classList.add('is-disabled'); btn.setAttribute('aria-disabled','true'); }
 }

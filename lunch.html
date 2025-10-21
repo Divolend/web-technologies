@@ -22,11 +22,10 @@
 </header>
 
 <main>
-  <!-- ===== БЛОК: ДОСТУПНЫЕ КОМБО (иконки) ===== -->
+  <!-- Доступные комбо (как было) -->
   <section class="combo-section">
     <h2>Доступные для заказа комбо</h2>
     <div class="combo-grid">
-      <!-- A -->
       <div class="combo-card combo-card--four">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
@@ -35,7 +34,6 @@
           <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
         </div>
       </div>
-      <!-- B -->
       <div class="combo-card combo-card--smd">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
@@ -43,7 +41,6 @@
           <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
         </div>
       </div>
-      <!-- C -->
       <div class="combo-card combo-card--ssd">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/soup.png"  alt="Суп"><span>Суп</span></div>
@@ -57,7 +54,6 @@
           <p class="dessert-note">(Можно добавить к любому заказу)</p>
         </div>
       </div>
-      <!-- D -->
       <div class="combo-card combo-card--msd">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
@@ -65,7 +61,6 @@
           <div class="combo-item"><img src="Images/drink.png" alt="Напиток"><span>Напиток</span></div>
         </div>
       </div>
-      <!-- E -->
       <div class="combo-card combo-card--md">
         <div class="combo-row">
           <div class="combo-item"><img src="Images/main.png"  alt="Главное блюдо"><span>Главное блюдо</span></div>
@@ -78,10 +73,10 @@
   <!-- Супы -->
   <section id="soups" data-category="soup">
     <h2>Выберите суп</h2>
-    <div class="filters">
-      <a href="#" data-kind="fish">рыбный</a>
-      <a href="#" data-kind="meat">мясной</a>
-      <a href="#" data-kind="veg">вегетарианский</a>
+    <div class="kind-filter">
+      <button type="button" data-kind="fish">рыбный</button>
+      <button type="button" data-kind="meat">мясной</button>
+      <button type="button" data-kind="veg">вегетарианский</button>
     </div>
     <div class="dish-grid"></div>
   </section>
@@ -89,10 +84,10 @@
   <!-- Основные блюда -->
   <section id="mains" data-category="main">
     <h2>Выберите главное блюдо</h2>
-    <div class="filters">
-      <a href="#" data-kind="fish">рыбное</a>
-      <a href="#" data-kind="meat">мясное</a>
-      <a href="#" data-kind="veg">вегетарианское</a>
+    <div class="kind-filter">
+      <button type="button" data-kind="fish">рыбное</button>
+      <button type="button" data-kind="meat">мясное</button>
+      <button type="button" data-kind="veg">вегетарианское</button>
     </div>
     <div class="dish-grid"></div>
   </section>
@@ -100,10 +95,10 @@
   <!-- Салаты и стартеры -->
   <section id="salads" data-category="salad">
     <h2>Выберите салат или стартер</h2>
-    <div class="filters">
-      <a href="#" data-kind="fish">рыбный</a>
-      <a href="#" data-kind="meat">мясной</a>
-      <a href="#" data-kind="veg">вегетарианский</a>
+    <div class="kind-filter">
+      <button type="button" data-kind="fish">рыбный</button>
+      <button type="button" data-kind="meat">мясной</button>
+      <button type="button" data-kind="veg">вегетарианский</button>
     </div>
     <div class="dish-grid"></div>
   </section>
@@ -111,9 +106,9 @@
   <!-- Напитки -->
   <section id="drinks" data-category="drink">
     <h2>Выберите напиток</h2>
-    <div class="filters">
-      <a href="#" data-kind="cold">холодный</a>
-      <a href="#" data-kind="hot">горячий</a>
+    <div class="kind-filter">
+      <button type="button" data-kind="cold">холодный</button>
+      <button type="button" data-kind="hot">горячий</button>
     </div>
     <div class="dish-grid"></div>
   </section>
@@ -121,10 +116,10 @@
   <!-- Десерты -->
   <section id="desserts" data-category="dessert">
     <h2>Выберите десерт</h2>
-    <div class="filters">
-      <a href="#" data-kind="small">маленькая порция</a>
-      <a href="#" data-kind="medium">средняя порция</a>
-      <a href="#" data-kind="large">большая порция</a>
+    <div class="kind-filter">
+      <button type="button" data-kind="small">маленькая порция</button>
+      <button type="button" data-kind="medium">средняя порция</button>
+      <button type="button" data-kind="large">большая порция</button>
     </div>
     <div class="dish-grid"></div>
   </section>
@@ -146,16 +141,15 @@
   <p>Позвонить нам: +7-000-000-00-00</p>
 </footer>
 
-<!-- Скрипты: корзина → API → рендер -->
-<script src="cart.js"></script>
+<!-- Скрипты: API → Cart → Render -->
 <script src="api.js"></script>
+<script src="cart.js"></script>
 <script src="render.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', async () => {
-    // грузим блюда: API → window.dishes
-    try { await loadDishes(); } catch(e) { console.warn(e); }
-    // рисуем карточки + фильтры + панель
+    try { await loadDishes(); } catch (e) { console.warn(e); }
     renderDishes();
+    updateStickyPanel();
   });
 </script>
 </body>
