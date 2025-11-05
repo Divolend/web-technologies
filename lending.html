@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Food Construct — доставка бизнес-ланчей в Москве</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <!-- Шрифт Roboto под стиль остальных страниц -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Наши доп. стили -->
+  <link rel="stylesheet" href="lending.css"/>
+</head>
+<body class="d-flex flex-column min-vh-100 fc-bg" style="font-family:'Roboto',system-ui,sans-serif;">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg fc-navbar border-bottom small">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="landing.html">Food Construct</a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNav"
+        aria-controls="mainNav"
+        aria-expanded="false"
+        aria-label="Переключить навигацию"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse mt-3 mt-lg-0" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">О нас</a></li>
+          <li class="nav-item"><a class="nav-link" href="lunch.html">Собрать ланч</a></li>
+          <li class="nav-item"><a class="nav-link" href="checkout.html">Оформить заказ</a></li>
+          <li class="nav-item"><a class="nav-link" href="orders.html">Заказы</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Контакты</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section py-5 py-lg-6 border-bottom">
+    <div class="container">
+      <div class="row align-items-center g-4">
+
+        <!-- Текстовая колонка -->
+        <div class="col-12 col-lg-6 text-center text-lg-start">
+          <h1 class="display-5 fw-bold mb-3 lh-tight hero-title">
+            Food Construct — доставка бизнес-ланчей в Москве
+          </h1>
+
+          <p class="fs-5 text-muted mb-3">
+            Мы привезём горячую еду к назначенному времени.
+          </p>
+
+          <p class="text-muted mb-4">
+            Ты сам собираешь ланч: суп, основное, салат или стартер, напиток и десерт.
+            Не нужно брать набор, который тебе не нравится — ты выбираешь сам.
+          </p>
+
+          <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-lg-start gap-3">
+            <a href="lunch.html" class="btn btn-danger btn-lg px-4 fw-semibold">
+              Собрать ланч
+            </a>
+            <a href="#features" class="btn btn-outline-secondary btn-lg px-4 fw-semibold">
+              Узнать подробнее
+            </a>
+          </div>
+
+          <p class="small text-muted mt-3 mb-0">
+            Доставка с 7:00 до 23:00
+          </p>
+        </div>
+
+        <!-- Картинка справа -->
+        <div class="col-12 col-lg-6 text-center">
+          <div class="hero-image-wrapper shadow-lg rounded-4 overflow-hidden mx-auto">
+            <!-- можешь заменить src на любую фотку блюда из своего репо -->
+            <img src="Images/food.jpg" alt="Еда" class="hero-image">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- О НАС -->
+  <section class="py-5 bg-white" id="about">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-12 col-lg-8">
+          <h2 class="fw-bold mb-3">О нас</h2>
+          <p class="lead text-muted mb-0">
+            Food Construct — доставка бизнес-ланчей в Москве. Мы привезём горячую еду к назначенному времени.
+            Можно выбрать точное время доставки, и заказ приедет тёплым.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРЕИМУЩЕСТВА -->
+  <section id="features" class="py-5 bg-light border-top border-bottom">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold mb-3">Почему Food Construct</h2>
+        <p class="text-muted mb-0">
+          Мы делаем еду так, как вы бы собрали её себе сами.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Бесплатная доставка -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="feature-card h-100 text-center p-4 border rounded-4">
+            <div class="fs-1 mb-3 text-danger">🚚</div>
+            <h3 class="h5 fw-bold mb-2">Бесплатная доставка при заказе от 700₽</h3>
+            <p class="text-muted mb-0">
+              Если сумма от 700₽ — привезём бесплатно. Удобно заказать сразу на двоих
+              или собрать общий заказ в офис.
+            </p>
+          </div>
+        </div>
+
+        <!-- Свежие продукты -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="feature-card h-100 text-center p-4 border rounded-4">
+            <div class="fs-1 mb-3 text-danger">🥗</div>
+            <h3 class="h5 fw-bold mb-2">Только свежие продукты</h3>
+            <p class="text-muted mb-0">
+              Мы собираем ланчи перед отправкой. Никаких “вчерашних салатов”
+              и разогрева из холодильника.
+            </p>
+          </div>
+        </div>
+
+        <!-- Индивидуальный ланч -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="feature-card h-100 text-center p-4 border rounded-4">
+            <div class="fs-1 mb-3 text-danger">🧩</div>
+            <h3 class="h5 fw-bold mb-2">Индивидуальный ланч под вкус и бюджет</h3>
+            <p class="text-muted mb-0">
+              Суп, основное, салат/стартер, напиток, десерт — или только то, что ты хочешь.
+              Никаких фиксированных “бизнес-ланч №3”.
+            </p>
+          </div>
+        </div>
+
+        <!-- Доставка ко времени -->
+        <div class="col-12 col-md-6 col-lg-3">
+          <div class="feature-card h-100 text-center p-4 border rounded-4">
+            <div class="fs-1 mb-3 text-danger">⏰</div>
+            <h3 class="h5 fw-bold mb-2">Доставка ко времени</h3>
+            <p class="text-muted mb-0">
+              Можно выбрать “сейчас” или указать точный час.
+              Мы привозим тёплым к моменту, когда тебе удобно поесть.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA СЕКЦИЯ -->
+  <section class="py-5 py-lg-6 cta-section text-white text-center text-lg-start">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-lg-8">
+          <h2 class="fw-bold mb-3 lh-tight">
+            Готов собрать свой ланч?
+          </h2>
+          <p class="mb-0 lead">
+            Перейди в конструктор, выбери блюда и оформи заказ за пару минут.
+          </p>
+        </div>
+
+        <div class="col-12 col-lg-4 text-lg-end text-center">
+          <a href="lunch.html" class="btn btn-light btn-lg fw-semibold px-4">
+            Собрать ланч →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="py-5" id="contact">
+    <div class="container">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">Связаться с нами</h2>
+        <p class="text-muted mb-0">
+          Напиши нам, если хочешь корпоративные обеды или у тебя вопрос по доставке.
+        </p>
+      </div>
+
+      <div class="row g-4">
+        <!-- Контакты -->
+        <div class="contact-row">
+          <div class="contact-card p-4 border rounded-4 bg-white shadow-sm">
+            <h3 class="h5 fw-bold mb-3">Контакты</h3>
+
+            <p class="mb-2">
+              <strong>Телефон:</strong><br />
+              <a class="text-decoration-none text-dark" href="tel:+70000000000">
+                +7-000-000-00-00
+              </a>
+            </p>
+
+            <p class="mb-2">
+              <strong>Email:</strong><br />
+              <a class="text-decoration-none text-dark" href="mailto:info@foodconstruct.example">
+                info@foodconstruct.example
+              </a>
+            </p>
+
+            <p class="mb-0">
+              <strong>Доставка:</strong><br />
+              Москва, с 7:00 до 23:00
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="mt-auto bg-dark py-4 text-white small">
+    <div class="container">
+      <div class="fw-medium">
+        Позвонить нам: +7-000-000-00-00
+      </div>
+      <div class="text-secondary mt-2">
+        © Food Construct, 2025
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle JS (для бургера навбара) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
+  </script>
+</body>
+</html>

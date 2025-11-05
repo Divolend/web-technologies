@@ -1,9 +1,11 @@
-/* api.js — загрузка блюд (сначала с серверного API, потом fallback на GitHub) */
+/* api.js — загрузка блюд (сначала с серверного API, потом если ошибка fallback на GitHub(запасной)) */
 (function () {
   'use strict';
 
   var API_ORIGIN = 'https://edu.std-900.ist.mospolytech.ru';
   var API_KEY    = '13dbb247-3839-4069-8e81-64e1240cca8a';
+
+  //запасной
   var DISHES_URL = API_ORIGIN + '/labs/api/dishes?api_key=' + encodeURIComponent(API_KEY);
   var FALLBACK_URL = 'https://divolend.github.io/web-technologies/labs/api/dishes.json';
 
